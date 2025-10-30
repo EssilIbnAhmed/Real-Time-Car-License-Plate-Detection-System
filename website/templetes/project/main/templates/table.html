@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+<h1>Dashboard</h1>
+<div class="top-part">
+    <div id="result-container">
+        <p id="access-result">{{text}}</p>
+    </div>
+</div>
+<div class="table-part">
+    <div class="entry-box">
+        <!-- Form to add a new entry -->
+        <form action="/add_entry" method="POST">
+            <div class="input-div">
+            <label>Model :</label>
+            <input type='text' name='car_plate'>
+            </div>
+            <div class="input-div">
+            <label>Car Plate :</label>
+            <input type='text' name='model'>
+            </div>
+            <input type="submit" value="Add Entry"> 
+        </form>
+        <br>
+        <!-- Form to delete an entry -->
+        <form action="/delete_entry" method="POST">
+            <div class="input-div">
+            <label>Car Plate to Delete :</label>
+            <input type='text' name='plate_to_delete'>
+            </div>     
+            <input type="submit" value="Delete Entry">
+        </form>
+    </div>
+    <div class="entry-table">
+    <h2>Car Entry Table</h2>
+    <table>
+        <tr>
+            <th>Car Plate</th>
+            <th>Model</th>
+            <th>Date</th>
+        </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{ i['car plate'] }}</td>
+        <td>{{ i['model'] }}</td>
+        <td>{{ i['timestamp']  }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    </div>
+</div>   
+
+</script>
+</body> 
+</html>
